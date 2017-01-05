@@ -18,7 +18,8 @@
     "homepage": "http://framework.zend.com/",
     "require-dev": {
         "zendframework/zftool": "0.1.0",
-        "zendframework/zend-developer-tools": "1.0.0"
+        "zendframework/zend-developer-tools": "1.0.0",
+        "phpunit/phpunit": "~5.0"
     },
     "require": {
         "php": ">=5.6",
