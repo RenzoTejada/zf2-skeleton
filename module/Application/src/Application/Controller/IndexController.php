@@ -30,6 +30,7 @@ class IndexController extends AbstractActionController
     {
         $Colection = $this->getServiceLocator()->get('TestCollection');
         $data = $Colection->getTest();
+        \Zend\Debug\Debug::dump($data);
         return new ViewModel(array("data" => $data));
     }
 }

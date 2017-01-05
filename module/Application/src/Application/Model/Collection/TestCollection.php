@@ -9,7 +9,8 @@ class TestCollection extends BaseCollection
 
     public function getTest()
     {
-        return $this->select();
+        $result = iterator_to_array($this->find(), false);
+        return $result;
     }
     
 }
