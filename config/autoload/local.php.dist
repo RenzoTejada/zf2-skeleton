@@ -11,5 +11,32 @@
  * credentials from accidentally being committed into version control.
  */
 
-return array(
-);
+return [
+    'db' => [
+        'driver' => 'pdo_mysql',
+        'hostname' => '127.0.0.1',
+        'database' => 'db_test',
+        'username' => 'root',
+        'password' => 'root',
+        'port' => '3306',
+        'options' => ['buffer_results' => true],
+        'driver_options' => [
+            PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'utf8\''
+        ]
+    ],
+    'mongodb' => array(
+        'db' => array(
+            'dbname' => 'admin',
+            'host' => '127.0.0.1',
+            'port' => '27017',
+            'username' => '',
+            'password' => '',
+            'connectTimeoutMS' => -1
+        )
+    ),
+    'service_manager' => [
+        'factories' => [
+            'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory'
+        ]
+    ],
+];

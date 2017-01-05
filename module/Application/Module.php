@@ -11,6 +11,10 @@ namespace Application;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Zend\Db\Adapter\Adapter as DbAdapter;
+use Application\Model\Table;
+use Application\Model\Collection;
+use Base\MongoDB\Adapter\MongoDB as BaseMongoDB;
 
 class Module
 {
@@ -33,6 +37,41 @@ class Module
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
                 ),
+            ),
+        );
+    }
+    
+    public function getServiceConfig()
+    {
+        return array(
+            'factories' => array(
+                'DbAdapter' => function ($sm) {
+                    $config = $sm->get('config');
+                    $config = $config['db'];
+                    $dbAdapter = new DbAdapter($config);
+
+                    return $dbAdapter;
+                },
+                'MongoClient' => function ($sm) {
+                    $config = $sm->get('config');
+                    $config = $config['mongodb']['db'];
+
+                    return new BaseMongoDB($config);
+                },
+                'TestCollection' => function ($sm) {
+                    $mongoDb = $sm->get('MongoClient')->getMongoDB();
+
+                    return new Collection\TestCollection(
+                            'test', $mongoDb
+                    );
+                },
+                'TestTable' => function ($sm) {
+                    $TestTable = new Table\TestTable('test', $sm->get('DbAdapter'));
+                    return $TestTable;
+                },
+            ),
+            'aliases' => array(
+                'TestModel' => 'TestTable',
             ),
         );
     }

@@ -31,6 +31,14 @@
         "vgarvardt/zf-simple-migrations": "0.1.0",
         "google/apiclient": "2.0.0-RC4"
     },
+    "autoload": {
+        "psr-0": {
+            "Base\\": "lib/Base/"
+        },
+        "classmap": [
+            "lib/Base/"
+        ]
+    },
     "repositories": [
         {
             "type": "composer",

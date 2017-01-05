@@ -18,4 +18,18 @@ class IndexController extends AbstractActionController
     {
         return new ViewModel();
     }
+    
+    public function modelAction()
+    {
+        $model = $this->getServiceLocator()->get('TestModel');
+        $data = $model->getTestAll();
+        return new ViewModel(array("data" => $data));
+    }
+    
+    public function mongodbAction()
+    {
+        $Colection = $this->getServiceLocator()->get('TestCollection');
+        $data = $Colection->getTest();
+        return new ViewModel(array("data" => $data));
+    }
 }
