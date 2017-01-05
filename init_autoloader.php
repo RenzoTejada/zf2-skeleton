@@ -15,7 +15,10 @@
  * the use of composer completely optional. This setup should work fine for
  * most users, however, feel free to configure autoloading however you'd like.
  */
-
+// Constantes para la Aplicación
+defined("ROOT_PATH") || define("ROOT_PATH", __DIR__);
+defined("APPLICATION_PATH") || define("APPLICATION_PATH", __DIR__);
+defined("PUBLIC_PATH") || define("PUBLIC_PATH", __DIR__ . '/public');
 // Composer autoloading
 if (file_exists('vendor/autoload.php')) {
     $loader = include 'vendor/autoload.php';
